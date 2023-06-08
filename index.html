@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="root">
+        <div>
+            <div class=".hello">Hello_2</div>
+        </div>
+        <div class=".hello">Hello_1</div>
+        <div>
+            <div class=".none">none</div>
+            <div class=".none">none</div>
+            <div class=".none">none
+                <div>
+                    <div>
+                        <div class=".hello">Hello_3</div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+
+        // Task 1
+        const arr = [1, 5, 7, 9];
+
+        console.log(Math.min(...arr));
+
+        // Task 2
+        function createCounter(userCount) {
+            let count = userCount;
+
+            function increment() {
+                count++;
+            }
+
+            function decrement() {
+                count--;
+            }
+
+            function getCount() {
+                return count;
+            }
+
+            return {
+                increment, decrement, getCount
+            };
+
+        }
+
+        const counter = createCounter(3);
+        counter.decrement();
+        counter.decrement();
+        counter.increment();
+        console.log(counter.getCount())
+
+
+        // Task 3
+        
+        function findElementByClass(root, target) {
+            
+            const currentEl = root.childNodes ;
+
+            if(currentEl.length > 0){
+                     currentEl.forEach(element => {
+                        if(element.className === target){
+                            console.log("completed" + element.textContent)
+                            return element ;
+                        }
+                        else{
+                            if(element.hasChildNodes()){
+                            findElementByClass(element, target);
+                            }
+                        }
+                    });
+            }
+        }
+
+        let rootElement = document.getElementById('root');
+        const tag = ".hello";
+
+        const res = findElementByClass(rootElement, tag);
+                
+    </script>
+</body>
+
+</html>
